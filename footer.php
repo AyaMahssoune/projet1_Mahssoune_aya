@@ -90,7 +90,9 @@
             <div class="footer-links">
                 <ul>
                     <li><a href="./index.php">Accueil</a></li>
-                    <li><a href="./shop.php">Nos Produits</a></li>
+                    <li><a href="./signUp.php">Sign Up</a></li>
+                    <li><a href="./login.php">Login</a></li>
+                    <li><a href="./shopping.php">Our Shop</a></li>
                 </ul>
             </div>
 

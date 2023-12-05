@@ -17,5 +17,3 @@ function connexionDB()
 }
 
 $conn = connexionDB();
-
-?>

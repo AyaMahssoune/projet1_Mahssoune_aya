@@ -1,5 +1,5 @@
 <?php
-require_once('connexion.php');
+require_once('../connexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $required_fields = ['user_name', 'email', 'pwd', 'street_name', 'street_nb', 'city', 'province', 'zip_code', 'country'];
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    if (!empty($errors)) {
       // Redirigir con mensajes de error
       $error_message = implode("<br>", $errors);
-      header("Location: signUp.php?error=$error_message");
+      header("Location: ../signUp.php?error=$error_message");
       exit();
    }
 
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 WHERE `id` = $user_id";
 
          if (mysqli_query($conn, $sql_update_user)) {
-            header("Location: index.php");
+            header("Location: ../index.php");
          } else {
             echo "Error updating user with address ID: " . mysqli_error($conn);
          }
@@ -69,4 +69,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Cerrar la conexión a la base de datos
 mysqli_close($conn);
-?>

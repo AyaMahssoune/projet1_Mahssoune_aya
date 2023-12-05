@@ -8,7 +8,7 @@
 
 <body>
    <h2>Sign Up</h2>
-   <form action="processSignUp.php" method="post">
+   <form action="./process/processSignUp.php" method="post">
       <!-- Fields for the 'user' table -->
       <label for="user_name">Username:</label>
       <input type="text" name="user_name">
@@ -44,7 +44,7 @@
       <a href="../../index.php">Accueil</a>
 
       <?php
-      
+
       // Display error messages if they exist
       if (isset($_GET['error'])) {
          $error = $_GET['error'];
