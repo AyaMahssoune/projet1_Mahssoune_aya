@@ -4,44 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>XP</title>
     <style>
         body {
-            font-family: 'Courier New', Courier, monospace;
+            font-family: Arial, Helvetica, sans-serif;
             margin: 4px;
             padding: 0;
             box-sizing: border-box;
         }
 
         .navbar {
+            font-family: "Courier New", Courier, monospace;
             border: 1px solid black;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             padding: 10px;
+            align-items: center;
+        }
+
+        .head {
+            font-family: "Courier New", Courier, monospace;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            align-items: center;
         }
 
         .nav a {
             color: black;
             text-decoration: none;
             font-weight: 900;
-            padding-top: 22px;
         }
 
         .nav a:hover {
             color: cadetblue;
         }
+
+        #eco {
+            font-size: large;
+            font-weight: 800;
+        }
+
+        .nav {
+            padding-top: 20px;
+        }
     </style>
 </head>
 
 <body>
-    <div>
-        <div class="logo">
-        </div>
-    </div>
     <div class="navbar">
-        <img src="./img/logo.jpg" width="50px" alt="">
-        <div class="nav"><a href="./signUp.php">Sign Up</a></div>
-        <div class="nav"><a href="./login.php">Login</a></div>
+        <div>
+            <img id="logo" src="./img/logo.jpg" width="60px" alt="">
+        </div>
+        <div class="nav"><a href="../../projet_aya/index.php">Home</a></div>
+        <div class="nav"><a href="./manageSession/signUp.php">Sign Up</a></div>
+        <div class="nav"><a href="./manageSession/login.php">Login</a></div>
     </div>
 
     <div class="imageAcceuil">

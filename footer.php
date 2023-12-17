@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XP</title>
+    <title>footer</title>
     <style>
         footer {
             background-color: #343a40;
@@ -89,10 +89,10 @@
 
             <div class="footer-links">
                 <ul>
-                    <li><a href="./index.php">Accueil</a></li>
-                    <li><a href="./signUp.php">Sign Up</a></li>
-                    <li><a href="./login.php">Login</a></li>
-                    <li><a href="./shopping.php">Our Shop</a></li>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="../manageSession/signUp.php">Sign Up</a></li>
+                    <li><a href="../manageSession/login.php">Login</a></li>
+                    <li><a href="../manageSession/login.php">Our Shop</a></li>
                 </ul>
             </div>
 
