@@ -53,7 +53,6 @@
 
         .footer-links a:hover {
             color: #007bff;
-            /* Couleur de survol des liens du pied de page */
         }
 
         .contact-info {
@@ -89,10 +88,10 @@
 
             <div class="footer-links">
                 <ul>
-                    <li><a href="index.php">Accueil</a></li>
-                    <li><a href="./manageSession/signUp.php">Sign Up</a></li>
-                    <li><a href="./manageSession/login.php">Login</a></li>
-                    <li><a href="./manageSession/login.php">Our Shop</a></li>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Our Shop</a></li>
                 </ul>
             </div>
 

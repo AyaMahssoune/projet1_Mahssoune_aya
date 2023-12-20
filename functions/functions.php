@@ -91,9 +91,8 @@ function updateUser(array $data)
         $result = mysqli_stmt_execute($stmt);
     }
 }
-/**
- * Delete user
- */
+
+// supp user
 function deleteUser(int $id)
 {
     global $conn;
@@ -114,7 +113,7 @@ function deleteUser(int $id)
     }
 }
 
-//role
+//cree role
 
 function createRole(int $id)
 {
@@ -134,6 +133,8 @@ function createRole(int $id)
         $result = mysqli_stmt_execute($stmt);
     }
 }
+
+// get roles function
 function getRoles()
 {
     global $conn;

@@ -30,11 +30,6 @@ include '../header/header.php';
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* h2 {
-            text-align: center;
-            color: #343a40;
-        } */
-
         form {
             display: flex;
             flex-direction: column;

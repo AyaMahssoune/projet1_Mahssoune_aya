@@ -88,7 +88,7 @@ if (count($products) > 0) {
 
 <div class="navbar">
     <img id="logo" src="../img/logo.jpg" width="60px" alt="">
-    <div class="nav"><a href="../Users/adminTab.php">Admin Tab</a></div>
+    <div class="nav"><a href="../index.php">home</a></div>
     <div class="nav"><a href="../manageSession/logout.php">logout</a></div>
 
 </div>
