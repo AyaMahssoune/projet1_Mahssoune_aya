@@ -1,7 +1,6 @@
 <?php
 // Include the database configuration file
 require_once('../connexion.php');
-include('../header/header.php');
 
 // Assuming that user information is stored in a session after login
 session_start();
@@ -35,6 +34,39 @@ mysqli_stmt_close($stmt);
     <meta charset="UTF-8">
     <title>Profile</title>
     <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 4px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            font-family: "Courier New", Courier, monospace;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            align-items: center;
+        }
+
+
+
+        .nav a {
+            color: black;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        .nav a:hover {
+            color: cadetblue;
+        }
+
+
+        .nav {
+            padding-top: -6px;
+        }
+
         h2 {
             text-align: center;
             color: #007bff;
@@ -104,6 +136,12 @@ mysqli_stmt_close($stmt);
 </head>
 
 <body>
+    <div class="navbar">
+        <img id="logo" src="../img/logo.jpg" width="60px" alt="">
+        <div class="nav"><a href="../manageProducts/products.php">Shopping</a></div>
+        <div class="nav"><a href="../index.php">Home</a></div>
+    </div>
+
     <h2>Profile</h2>
     <form action="updateprofil.php" method="post" enctype="multipart/form-data">
         <!-- Display user information and add form fields based on your database structure -->

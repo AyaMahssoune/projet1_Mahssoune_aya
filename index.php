@@ -58,7 +58,7 @@
         <div>
             <img id="logo" src="./img/logo.jpg" width="60px" alt="">
         </div>
-        <div class="nav"><a href="../../projet_aya/index.php">Home</a></div>
+        <div class="nav"><a href="./index.php">Home</a></div>
         <div class="nav"><a href="./manageSession/signUp.php">Sign Up</a></div>
         <div class="nav"><a href="./manageSession/login.php">Login</a></div>
     </div>

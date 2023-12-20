@@ -1,6 +1,6 @@
 <?php
 include('./connexion.php');
-include('./header/header.php');
+
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -61,87 +61,111 @@ if (isset($_POST['checkout'])) {
 }
 ?>
 
+<head>
+    <style>
+        th {
+            padding: 20px;
+        }
+
+        table {
+            width: 70%;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid;
+            border-radius: 5px;
+            /* Coins arrondis */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
 
 <body>
-    <center><h3>Shopping Cart</h3></center>
-<?php
-// Check if the cart is not empty
-if (!empty($_SESSION['cart'])) {
-    $totalAmount = 0;
+    <center>
+        <h1>Pannier</h1>
+    </center>
+    <?php
+    // Check if the cart is not empty
+    if (!empty($_SESSION['cart'])) {
+        $totalAmount = 0;
     ?>
-    <div class="container mt-5">
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Product Image</th>
-                    <th>Product Price</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-<?php
-foreach ($_SESSION['cart'] as $cartItem) {
-    $productId = $cartItem['product_id'];
-    $productQuery = "SELECT * FROM `product` WHERE `id` = $productId";
-    $result = mysqli_query($con, $productQuery);
+        <div class="container mt-5">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Image produit</th>
+                        <th>Prix</th>
+                        <th>Quantite</th>
+                        <th>Prix Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($_SESSION['cart'] as $cartItem) {
+                        $productId = $cartItem['product_id'];
+                        $productQuery = "SELECT * FROM `product` WHERE `id` = $productId";
+                        $result = mysqli_query($conn, $productQuery);
 
-    if ($result) {
-        $product = mysqli_fetch_assoc($result);
-        $productPrice = $product['price'];
-        $quantity = $cartItem['quantity'];
-        $totalPrice = $quantity * $productPrice;
+                        if ($result) {
+                            $product = mysqli_fetch_assoc($result);
+                            $productPrice = $product['price'];
+                            $quantity = $cartItem['quantity'];
+                            $totalPrice = $quantity * $productPrice;
 
-        $totalAmount += $totalPrice;
-        ?>
-        <tr>
-            <td><img src="<?php echo $product['img_url']; ?>" alt="<?php echo $product['name']; ?>" width="50"></td>
-            <td><?php echo $productPrice; ?></td>
-            <td>
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-                    <div class="input-group">
-                        <input type="number" name="quantity" value="<?php echo $quantity; ?>" min="1" class="form-control">
-                        <div class="input-group-append">
-                            <input type="submit" name="update_quantity" value="Mettre à jour" class="btn btn-outline-secondary">
-                        </div>
-                    </div>
-                </form>
-            </td>
-            <td><?php echo $totalPrice; ?></td>
-            <td>
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
-                    <input type="submit" name="remove_product" value="Supprimer" class="btn btn-danger">
-                </form>
-            </td>
-        </tr>
-        <?php
-    }
-}
-?>
-            </tbody>
-        </table>
-        
-        <p class="lead">Total Amount: $<?php echo $totalAmount; ?></p>
-        
-        <!-- Add a checkout button -->
-        <form action="confirm.php" method="post">
-            <input type="submit" name="checkout" value="Checkout" class="btn btn-primary">
-        </form>
+                            $totalAmount += $totalPrice;
+                    ?>
+                            <tr>
+                                <td><img src="<?php echo $product['img_url']; ?>" alt="<?php echo $product['name']; ?>" width="50"></td>
+                                <td><?php echo $productPrice; ?></td>
+                                <td>
+                                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                        <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                                        <div class="input-group">
+                                            <input type="number" name="quantity" value="<?php echo $quantity; ?>" min="1" class="form-control">
+                                            <div class="input-group-append">
+                                                <input type="submit" name="update_quantity" value="Mettre à jour" class="btn btn-outline-secondary">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td><?php echo $totalPrice; ?></td>
+                                <td>
+                                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                        <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+                                        <input type="submit" name="remove_product" value="Supprimer" class="btn btn-danger">
+                                    </form>
+                                </td>
+                            </tr>
+                    <?php
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+            <p class="lead">Prix Total : $<?php echo $totalAmount; ?></p>
+
+            <!-- Add a checkout button -->
+            <form action="orderConfirmation.php" method="post">
+                <input type="submit" name="checkout" value="Checkout" class="btn btn-primary">
+            </form>
+        </div>
+
+    <?php } else { ?>
+        <div class="container mt-5">
+            <p class="lead">Your cart is empty.</p>
+        </div>
+    <?php } ?>
+
+    <div class="container mt-3">
+        <a href="./manageProducts/products.php" class="btn btn-info">Continue Shopping</a>
     </div>
-
-<?php } else { ?>
-    <div class="container mt-5">
-        <p class="lead">Your cart is empty.</p>
-    </div>
-<?php } ?>
-
-<div class="container mt-3">
-    <a href="products.php" class="btn btn-info">Continue Shopping</a>
-</div>
 
 
 </body>
+
 </html>

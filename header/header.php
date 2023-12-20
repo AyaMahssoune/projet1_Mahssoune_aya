@@ -23,14 +23,7 @@
             align-items: center;
         }
 
-        .head {
-            font-family: "Courier New", Courier, monospace;
-            border: 1px solid black;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            align-items: center;
-        }
+
 
         .nav a {
             color: black;
@@ -42,10 +35,6 @@
             color: cadetblue;
         }
 
-        #eco {
-            font-size: large;
-            font-weight: 800;
-        }
 
         .nav {
             padding-top: -6px;
@@ -56,9 +45,9 @@
 <body>
     <div class="navbar">
         <img id="logo" src="../img/logo.jpg" width="60px" alt="">
-        <div class="nav"><a href="../../projet_aya/index.php">Home</a></div>
-        <div class="nav"><a href="../../projet_aya/manageSession/signUp.php">Sign Up</a></div>
-        <div class="nav"><a href="../../projet_aya/manageSession/login.php">Login</a></div>
+        <div class="nav"><a href="../index.php">Home</a></div>
+        <div class="nav"><a href="../manageSession/signUp.php">Sign Up</a></div>
+        <div class="nav"><a href="../manageSession/login.php">Login</a></div>
     </div>
 </body>
 

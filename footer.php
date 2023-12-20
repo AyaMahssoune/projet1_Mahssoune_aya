@@ -90,9 +90,9 @@
             <div class="footer-links">
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
-                    <li><a href="../manageSession/signUp.php">Sign Up</a></li>
-                    <li><a href="../manageSession/login.php">Login</a></li>
-                    <li><a href="../manageSession/login.php">Our Shop</a></li>
+                    <li><a href="./manageSession/signUp.php">Sign Up</a></li>
+                    <li><a href="./manageSession/login.php">Login</a></li>
+                    <li><a href="./manageSession/login.php">Our Shop</a></li>
                 </ul>
             </div>
 

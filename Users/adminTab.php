@@ -73,13 +73,13 @@ if ($user_role != 1) {
 </head>
 
 <body>
-    <h2>Bienvenu SuperAdmin</h2>
+    <h2>Bienvenu Admin</h2>
 
     <table>
         <tr>
             <td><a href="../manageProducts/addProduct.php">Ajouter Produit</a></td>
             <td><a href="../manageProducts/products.php">Produit</a></td>
-            <td><a href="manage_users.php">Gérer Utilisateurs</a></td>
+            <td><a href="manageUsers.php">Gérer Utilisateurs</a></td>
             <td><a href="../manageSession/logout.php">Logout</a></td>
         </tr>
     </table>

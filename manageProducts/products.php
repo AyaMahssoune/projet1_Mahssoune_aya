@@ -1,5 +1,4 @@
 <?php
-include("../header/header.php");
 include("../connexion.php");
 
 // Fetch products from the database using MySQLi
@@ -29,57 +28,70 @@ if (count($products) > 0) {
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="../css/style.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-
         .container {
-            margin-top: 50px;
+            text-align: center;
         }
 
         h2 {
-            color: #007BFF;
             text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            border: none;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .pictures {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: bold;
             color: #343a40;
         }
 
-        .card-text {
-            color: #6c757d;
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .btn-primary,
-        .btn-link {
-            color: #007BFF;
+        label {
+            margin: 10px 0;
+            color: #343a40;
         }
 
-        .btn-primary:hover,
-        .btn-link:hover {
+        .image {
+            width: 200px;
+        }
+
+        input,
+        .btn {
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input,
+        .btn[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .lien,
+        .btn {
+            text-align: center;
             text-decoration: none;
+            color: #007bff;
+            margin-top: 15px;
+            display: inline-block;
         }
     </style>
 </head>
+
+<div class="navbar">
+    <img id="logo" src="../img/logo.jpg" width="60px" alt="">
+    <div class="nav"><a href="../Users/adminTab.php">Admin Tab</a></div>
+    <div class="nav"><a href="../manageSession/logout.php">logout</a></div>
+
+</div>
 
 <div class="container mt-5">
     <h2 class="mb-4">Liste des produits</h2>
@@ -92,7 +104,7 @@ if (count($products) > 0) {
         ?>
                 <div class="col">
                     <div class="card h-100 square-container">
-                        <img src="<?php echo $product['img_url']; ?>" class="pictures" alt="<?php echo $product['name']; ?>" class="card-img-top">
+                        <img class='image' src="<?php echo $product['img_url']; ?>" class="pictures" alt="<?php echo $product['name']; ?>" class="img-fluid">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $product['name']; ?></h5>
                             <p class="card-text">Prix: $<?php echo $product['price']; ?></p>
@@ -103,7 +115,7 @@ if (count($products) > 0) {
                                 <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                 <input type="submit" value="Add to Cart" class="btn btn-primary">
                             </form>
-                            <a href="productDetail.php?product_id=<?php echo $product['id']; ?>" class="btn btn-link" style="margin-left: 10px;">View Details</a>
+                            <a href="productDetail.php?product_id=<?php echo $product['id']; ?>" class="btn btn-link" style="margin-left: 10px;">Detail produit</a>
                         </div>
                     </div>
                 </div>

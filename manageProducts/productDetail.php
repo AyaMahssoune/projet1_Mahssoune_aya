@@ -48,6 +48,7 @@ if (isset($_GET['product_id'])) {
 
         .container {
             margin-top: 50px;
+            text-align: center;
         }
 
         h2 {
@@ -86,7 +87,7 @@ if (isset($_GET['product_id'])) {
         <img src="<?php echo $product['img_url']; ?>" alt="<?php echo $product['name']; ?>" class="img-fluid">
         <p>Price: $<?php echo $product['price']; ?></p>
 
-        <form action="cart.php" method="post">
+        <form action="cartPayment.php" method="post">
             <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
             <button type="submit" class="btn btn-primary">Ajouter au Panier</button>
         </form>
