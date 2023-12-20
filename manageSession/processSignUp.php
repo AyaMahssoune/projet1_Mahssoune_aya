@@ -1,6 +1,6 @@
 <?php
 require_once('../connexion.php');
-require_once('../functions/userCrud.php');
+require_once('../functions/functions.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $required_fields = ['user_name', 'email', 'pwd', 'street_name', 'street_nb', 'city', 'province', 'zip_code', 'country'];

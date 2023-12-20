@@ -1,36 +1,36 @@
 <?php
-session_start();
-
-
 //Connexion à la base de données
 
 require_once('../connexion.php');
 
+session_start();
+
 //Vérification de la méthode de requête HTTP
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom_utilisateur = $_POST['user_name'];
-    $mot_de_passe = $_POST['pwd'];
+    $userName = $_POST['user_name'];
+    $password = $_POST['pwd'];
 
     // Récupérer les données de l'utilisateur depuis la base de données en utilisant le nom d'utilisateur fourni
     $sql = "SELECT * FROM `user` WHERE `user_name` = ?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, 's', $nom_utilisateur);
+    mysqli_stmt_bind_param($stmt, 's', $userName);
     mysqli_stmt_execute($stmt);
-    $resultat = mysqli_stmt_get_result($stmt);
-    if ($resultat) {
-        $user = mysqli_fetch_assoc($resultat);
+    $result = mysqli_stmt_get_result($stmt);
 
-        // Vérifier si le mot de passe correspond
-        if ($user && password_verify($mot_de_passe, $user['pwd'])) {
-            // Le mot de passe est correct, démarrer la session et stocker l'ID et le rôle de l'utilisateur
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['role_user'] = $user['id_role'];
+    if ($result) {
+        $user = mysqli_fetch_assoc($result);
+
+        // Check if the password matches
+        if ($user && password_verify($password, $user['pwd'])) {
+            // Password is correct, start the session and store user ID and role
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_role'] = $user['role_id'];
 
             // Rediriger en fonction du rôle de l'utilisateur
-            if ($user['id_role'] == 1) { // Administrateur
-                header("Location: ../Admin/administrator.php");
+            if ($user['role_id'] == 1) { // Administrateur
+                header("Location: ../Users/adminTab.php");
             } else {
-                header("Location: ../shopping.php");
+                header("Location: ../Users/userProfil.php");
             }
             exit();
         } else {

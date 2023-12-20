@@ -1,5 +1,5 @@
 <?php
-require_once('./connexion.php');
+require_once('../connexion.php');
 
 session_start();
 
@@ -32,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             WHERE `id` = $user_id";
 
     if (mysqli_query($conn, $sql)) {
-        header("Location: profile.php");
+        header("Location: userProfil.php");
     } else {
         $error_message = "Erreur lors de la mise à jour du profil : " . mysqli_error($conn);
-        header("Location: /Users/userProfil.php?error=$error_message");
+        header("Location: userProfil.php?error=$error_message");
         exit();
     }
 } else {
@@ -43,4 +43,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 mysqli_close($conn);
-?>

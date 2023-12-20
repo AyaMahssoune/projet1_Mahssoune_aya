@@ -1,6 +1,7 @@
 <?php
 // Include the database configuration file
 require_once('../connexion.php');
+include('../header/header.php');
 
 // Assuming that user information is stored in a session after login
 session_start();
@@ -12,10 +13,12 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Get the user ID from the session
-$user_id = $_SESSION['id_utilisateur'];
+$user_id = $_SESSION['user_id'];
+
+
 
 // Get user information from the database using prepared statement
-$sql = "SELECT * FROM `user` WHERE `id_utilisateur` = ?";
+$sql = "SELECT * FROM `user` WHERE `id` = ?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
 mysqli_stmt_execute($stmt);
@@ -31,7 +34,73 @@ mysqli_stmt_close($stmt);
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="../css/profilStyle.css">
+    <style>
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin: 10px 0;
+            color: #343a40;
+        }
+
+        input {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: aliceblue;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .lien {
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .lien a:hover {
+            text-decoration: underline;
+        }
+
+        .logout {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #dc3545;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-left: 45%;
+            margin-bottom: 22px;
+            padding: 10px 38px 10px 38px;
+        }
+
+        .logout:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,16 +109,16 @@ mysqli_stmt_close($stmt);
         <!-- Display user information and add form fields based on your database structure -->
         <img src="../img/profil-pic.png" alt="Default Profile Picture" width="100">
         <br>
-        <label for="user_name">Username:</label>
+        <label for="user_name">Nom utilisateur:</label>
         <input type="text" name="user_name" value="<?php echo $user['user_name']; ?>" readonly>
         <br>
-        <label for="email">Email:</label>
+        <label for="email">Gmail:</label>
         <input type="email" name="email" value="<?php echo $user['email']; ?>">
         <br>
-        <label for="fname">First Name:</label>
+        <label for="fname">Prenom:</label>
         <input type="text" name="fname" value="<?php echo $user['fname']; ?>">
         <br>
-        <label for="lname">Last Name:</label>
+        <label for="lname">Nom:</label>
         <input type="text" name="lname" value="<?php echo $user['lname']; ?>">
         <br>
         <input type="submit" value="Enregistrer">
@@ -61,11 +130,11 @@ mysqli_stmt_close($stmt);
         }
         ?>
     </form>
-    <a href="./change_password.php">Change password</a>
     <br>
-    <a href="../manageSession/logout.php">Log out</a>
-    <br>
-    <a href="../index.php">Accueil</a>
+    <a class="logout" href="../manageSession/logout.php">Log out</a>
 </body>
 
 </html>
+<?php
+include '../footer.php';
+?>

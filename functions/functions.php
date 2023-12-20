@@ -1,5 +1,6 @@
 <?php
 
+include './connexion.php';
 function createUser(array $data)
 {
     global $conn;
@@ -146,32 +147,66 @@ function getRoles()
     return $roles;
 }
 
-//Function to connect to the database
-function authentification($email, $pwd)
+//selectionner produits
+function getAllProducts()
 {
     $conn = connexionDB();
-    $sql = "SELECT * FROM  user wHERE email =?";
+    $sql = "SELECT `id`, `name`, `quantity`, `price`, `img_url`, `description` FROM `product` WHERE id =?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
     $stmt->execute();
-    $utilisateur = $stmt->get_result();
+    $resultats = $stmt->get_result();
+    $products = array();
+    foreach ($resultats as $product) {
+        $products[] = $product;
+    }
+    return $products;
+}
 
-    if ($utilisateur->num_rows >= 1) {
-        $utilisateur = $utilisateur->fetch_assoc();
-        if (password_verify($pwd, $utilisateur['pwd'])) {
-            $_SESSION['utilisateur'] = $utilisateur['id'];
-            $_SESSION['user_id'] = $utilisateur['id'];
-            $_SESSION['utilisateur_nom'] = $utilisateur['nom'];
-            $_SESSION['utilisateur_add'] = $utilisateur['addresse'];
-            $_SESSION['utilisateur_email'] = $utilisateur['email'];
-            $_SESSION['utilisateur_pscode'] = $utilisateur['postal_code'];
-            $_SESSION['utilisateur_prenom'] = $utilisateur['prenom'];
-            $_SESSION['role_id'] = $utilisateur['role_id'];
-            header('Location: ./home.php');
-        } else {
-            echo "Email or password Incorrect. Try again!!";
-        }
+//ajouter produit
+function addProduct($nom, $price, $quantity, $description)
+{
+    $conn = connexionDB();
+    $sql = "INSERT INTO `product`(`id`, `name`, `quantity`, `price`, `img_url`, `description`) values (?,?,?,?,?,?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sdis", $nom, $price, $quantity, $description);
+    $result = $stmt->execute();
+    $id = $conn->insert_id;
+    $stmt->close();
+    $conn->close();
+    if ($result) {
+        header('Location: ./manageProduct.php');
+        exit();
     } else {
-        echo "User Not Found";
+        echo "Error adding product";
+    }
+    $stmt->close();
+    $conn->close();
+}
+//function get produit par id
+function getProductById($id)
+{
+    $conn = connexionDB();
+    $sql = "INSERT INTO `product`(`id`, `name`, `quantity`, `price`, `img_url`, `description`) values (?,?,?,?,?,?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $products = $result->fetch_assoc();
+    return $products;
+}
+
+
+
+//CART FUNCTIONS:
+
+function addCart($id, $quantite, $ishome = true)
+{
+    $_SESSION['cart'][$id] = $quantite;
+    if ($ishome) {
+        header('Location: ../Products.php');
+        exit();
+    } else {
+        header('Location: ../cartPayment');
+        exit();
     }
 }
